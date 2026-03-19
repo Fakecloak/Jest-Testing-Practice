@@ -84,4 +84,39 @@ export class HashMap {
     // if key not found on loop
     return null;
   }
+
+  //same as get method but return true or false
+  has(key) {
+    const index = this.hash(key);
+    const bucket = this.buckets[index];
+
+    if (bucket === null) return false;
+
+    for (let i = 0; i < bucket.length; i++) {
+      if (bucket[i].key === key) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  //same as get/has method but remove the key value pair and return true or false
+  remove(key) {
+    const index = this.hash(key);
+
+    const bucket = this.buckets[index];
+
+    if (bucket === null) return false;
+
+    for (let i = 0; i < bucket.length; i++) {
+      if (bucket[i].key === key) {
+        bucket.splice(i, 1); //removes that key value pair from bucket
+        this.size--;
+        return true;
+      }
+    }
+
+    return false;
+  }
 }
