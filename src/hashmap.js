@@ -64,4 +64,24 @@ export class HashMap {
       }
     })
   }
+
+  get(key) {
+    //hashing the key to get the index
+    const index = this.hash(key);
+
+    //getting the bucket index
+    const bucket = this.buckets[index];
+
+    //checking if bucket is empty
+    if (bucket === null) return null;
+
+    for (let i = 0; i < bucket.length; i++) {
+      if (bucket[i].key === key) {
+        return bucket[i].value;
+      }
+    }
+
+    // if key not found on loop
+    return null;
+  }
 }
