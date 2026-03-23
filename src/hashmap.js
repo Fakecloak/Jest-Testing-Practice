@@ -125,9 +125,51 @@ export class HashMap {
   }
 
   clear() {
-    this.buckets = new Array(this.capacity).fill(null); //creating new array with new capacity
+    this.buckets = new Array(this.capacity).fill(null); //creating new array with new capacity.
     this.size = 0;
   }
 
+  // returns an array containing all the keys inside the hash map.
+  keys() {
+    const arr = [];
+    for (let i = 0; i < this.buckets.length; i++) {
+      const bucket = this.buckets[i];
+      if (bucket !== null) {
+        for (let j = 0; j < bucket.length; j++) {
+          arr.push(bucket[j].key);
+        }
+      }
+    }
 
+    return arr;
+  }
+
+  // returns an array containing all the values.
+  values() {
+    const arr = [];
+    for (let i = 0; i < this.buckets.length; i++) {
+      const bucket = this.buckets[i];
+      if (bucket !== null) {
+        for (let j = 0; j < bucket.length; j++) {
+          arr.push(bucket[j].value);
+        }
+      }
+    }
+
+    return arr;
+  }
+
+  entries() {
+    const arr = [];
+    for (let i = 0; i < this.buckets.length; i++) {
+      const bucket = this.buckets[i];
+      if (bucket !== null) {
+        for (let j = 0; j < bucket.length; j++) {
+          arr.push([bucket[j].key, bucket[j].value]);
+        }
+      }
+    }
+
+    return arr;
+  }
 }
