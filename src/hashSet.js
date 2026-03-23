@@ -124,7 +124,7 @@ class hashSet {
         for (let i = 0; i < this.buckets.length; i++) {
             const bucket = this.buckets[i];
             if (bucket !== null) {
-                for (let j = 0; j < bsucket.length; j++) {
+                for (let j = 0; j < bucket.length; j++) {
                     arr.push(bucket[j].key);
                 }
             }
