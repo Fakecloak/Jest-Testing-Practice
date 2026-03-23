@@ -119,4 +119,15 @@ export class HashMap {
 
     return false;
   }
+
+  length() {
+    return this.size;
+  }
+
+  clear() {
+    this.buckets = new Array(this.capacity).fill(null); //creating new array with new capacity
+    this.size = 0;
+  }
+
+
 }
