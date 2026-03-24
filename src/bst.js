@@ -31,5 +31,39 @@ class BinarySearchTree {
 
         return build(sortedArr);
     }
+
+    includes(value) {
+        let current = this.root;
+
+        while (current !== null) {
+            if (current.data === value) return true;
+
+            if (current.data > value) {
+                current = current.left;
+            } else {
+                current = current.right;
+            }
+        }
+        return false;
+    }
+
+    insert(value) {
+        // if the tree is empty, create a new node and make it the root
+        if (this.root === null) {
+            this.root = new node(value);
+            return;
+        }
+
+        let current = this.root;
+
+        while (current !== null) {
+            //if value exist do nothing 
+            if (current.data === value) {
+                return;
+            }
+
+
+        }
+    }
 }
 
