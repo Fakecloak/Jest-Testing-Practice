@@ -7,8 +7,8 @@ class node {
 }
 
 class BinarySearchTree {
-    constructor() {
-        this.root = this.buildTree();
+    constructor(arr) {
+        this.root = this.buildTree(arr);
     }
 
     buildTree(arr) {
