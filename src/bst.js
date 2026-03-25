@@ -50,18 +50,36 @@ class BinarySearchTree {
     insert(value) {
         // if the tree is empty, create a new node and make it the root
         if (this.root === null) {
-            this.root = new node(value);
+            this.root = new Node(value);
             return;
         }
 
         let current = this.root;
 
-        while (current !== null) {
+        while (true) {
             //if value exist do nothing 
             if (current.data === value) {
                 return;
             }
 
+            //node left side if value is smaller
+            if (current.data > value) {
+                // if left is null create new node
+                if (current.left === null) {
+                    current.left = new Node(value);
+                    return;
+                }
+                // move to the left child
+                current = current.left;
+            } else {
+                //node right side if value is greater
+                if (current.right === null) {
+                    current.right = new Node(value);
+                    return;
+                }
+                // move to the right child
+                current = current.right;
+            }
 
         }
     }
