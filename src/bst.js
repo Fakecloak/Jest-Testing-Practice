@@ -80,8 +80,52 @@ class BinarySearchTree {
                 // move to the right child
                 current = current.right;
             }
-
         }
+    }
+
+    delete(value, root = this.root) {
+
+        // If tree/subtree is empty → nothing to delete
+        if (root === null) {
+            return null;
+        }
+
+        // Go LEFT if value is smaller
+        if (value < root.data) {
+            root.left = this.delete(value, root.left);
+        }
+        // Go RIGHT if value is greater
+        else if (value > root.data) {
+            root.right = this.delete(value, root.right);
+        }
+        // Node FOUND
+        else {
+            // Case 1: No children (leaf)
+            if (root.left === null && root.right === null) {
+                return null;
+            }
+            // Case 2: Only right child
+            if (root.left === null) {
+                return root.right;
+            }
+            // Case 2: Only left child
+            if (root.right === null) {
+                return root.left;
+            }
+
+            // Case 3: Two children
+            // Step 1: Find smallest in right subtree
+            let temp = root.right;
+            while (temp.left !== null) {
+                temp = temp.left;
+            }
+            // Step 2: Replace value
+            root.data = temp.data;
+            // Step 3: Delete duplicate
+            root.right = this.delete(temp.data, root.right);
+        }
+        // Return updated node
+        return root;
     }
 }
 
