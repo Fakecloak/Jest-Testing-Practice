@@ -127,5 +127,36 @@ class BinarySearchTree {
         // Return updated node
         return root;
     }
+
+    levelOrderForEach(callback) {
+
+        // if no callback
+        if (!callback) {
+            throw new Error("Callback is required");
+        }
+
+        // if tree empty
+        if (this.root === null) return;
+
+        let queue = [];              // create queue
+        queue.push(this.root);       // start with root
+
+        while (queue.length > 0) {
+
+            let current = queue.shift();   // remove first element
+
+            callback(current.data);        // call callback with value
+
+            // add left child if exists
+            if (current.left !== null) {
+                queue.push(current.left);
+            }
+
+            // add right child if exists
+            if (current.right !== null) {
+                queue.push(current.right);
+            }
+        }
+    }
 }
 
