@@ -128,6 +128,13 @@ class BinarySearchTree {
         return root;
     }
 
+
+
+    // EX:        10
+    //       /    \
+    //      5      15
+    //     / \    /  \
+    //    3   7  12  20
     levelOrderForEach(callback) {
 
         // if no callback
