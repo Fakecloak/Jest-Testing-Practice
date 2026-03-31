@@ -165,5 +165,19 @@ class BinarySearchTree {
             }
         }
     }
+
+    //in-order traversal : left → root → right
+    inOrderForEach(callback, node = this.root) {
+
+        if (!callback) throw new Error("Callback required");
+
+        if (node === null) return;
+
+        this.inOrderForEach(callback, node.left); // for left subtree
+        callback(node.data); // for root
+        this.inOrderForEach(callback, node.right); // for right subtree
+    }
+
+
 }
 
