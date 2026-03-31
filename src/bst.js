@@ -178,6 +178,15 @@ class BinarySearchTree {
         this.inOrderForEach(callback, node.right); // for right subtree
     }
 
+    //pre-order traversal : root → left → right
+    preOrderForEach(callback, node = this.root) {
+        if (!callback) throw new Error("Callback required");
 
+        if (node === null) return;
+
+        callback(node.data); // for root
+        this.preOrderForEach(callback, node.left); // for left subtree
+        this.preOrderForEach(callback, node.right); // for right subtree
+    }
 }
 
