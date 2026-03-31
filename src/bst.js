@@ -1,4 +1,4 @@
-class node {
+export class node {
     constructor(data) {
         this.data = data;
         this.left = null;
@@ -6,7 +6,7 @@ class node {
     }
 }
 
-class BinarySearchTree {
+export class BinarySearchTree {
     constructor(arr) {
         this.root = this.buildTree(arr);
     }
@@ -187,6 +187,17 @@ class BinarySearchTree {
         callback(node.data); // for root
         this.preOrderForEach(callback, node.left); // for left subtree
         this.preOrderForEach(callback, node.right); // for right subtree
+    }
+
+    //post-order traversal : left → right → root
+    postOrderForEach(callback, node = this.root) {
+        if (!callback) throw new Error("Callback required");
+
+        if (node === null) return;
+
+        this.postOrderForEach(callback, node.left); // for left subtree
+        this.postOrderForEach(callback, node.right); // for right subtree
+        callback(node.data); // for root
     }
 }
 
