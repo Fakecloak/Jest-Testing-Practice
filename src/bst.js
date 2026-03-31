@@ -199,5 +199,51 @@ export class BinarySearchTree {
         this.postOrderForEach(callback, node.right); // for right subtree
         callback(node.data); // for root
     }
+
+    // height of a node
+    height(value) {
+
+        // STEP 1: Find the node
+        let current = this.root;
+
+        while (current !== null) {
+
+            if (value === current.data) {
+                break; // found the node
+            }
+
+            if (value < current.data) {
+                current = current.left;  // go left
+            } else {
+                current = current.right; // go right
+            }
+        }
+
+        // If not found
+        if (current === null) {
+            return undefined;
+        }
+
+        // STEP 2: Calculate height from this node
+        function getHeight(node) {
+
+            // if no node → return -1
+            if (node === null) {
+                return -1;
+            }
+
+            // get left subtree height
+            let leftHeight = getHeight(node.left);
+
+            // get right subtree height
+            let rightHeight = getHeight(node.right);
+
+            // return bigger path + 1 edge
+            return Math.max(leftHeight, rightHeight) + 1;
+        }
+
+        // start calculation from found node
+        return getHeight(current);
+    }
 }
 
